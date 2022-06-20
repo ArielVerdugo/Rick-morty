@@ -9,14 +9,12 @@ data class CharacterDto(
     val name: String,
     @SerializedName("start_date")
     val startDate: Date,
-    val image: ImageDto? = null,
-    val type: String
+    val image: String,
+    val type: String,
+    val status:String,
+    val species:String
 )
 
 data class CharactersDto(
     val events: List<CharacterDto>
-)
-
-data class ImageDto(
-    val url: URL
 )

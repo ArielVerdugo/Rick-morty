@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eventbrite.androidchallenge.data.events.model.CharacterDto
-import com.eventbrite.androidchallenge.data.events.model.ImageDto
 import com.eventbrite.androidchallenge.databinding.CharactersInfoFragmentBinding
 import com.eventbrite.androidchallenge.ui.events.adapter.CharacterAdapter
-import java.net.URL
 import java.util.*
 
 class CharactersInfoFragment : Fragment() {
@@ -47,10 +45,10 @@ class CharactersInfoFragment : Fragment() {
 
     fun initUi(){
         val character1 = CharacterDto("123","Morty",
-            Date(System.currentTimeMillis()), ImageDto(URL("https://rickandmortyapi.com/api/character/avatar/36.jpeg")),"Humano")
+            Date(System.currentTimeMillis()), "https://rickandmortyapi.com/api/character/avatar/36.jpeg","Humano","Vivo","Loco")
 
         val character2 = CharacterDto("123","Ricky Martin",
-            Date(System.currentTimeMillis()), ImageDto(URL("https://rickandmortyapi.com/api/character/avatar/36.jpeg")),"Humano")
+            Date(System.currentTimeMillis()), "https://rickandmortyapi.com/api/character/avatar/36.jpeg","Humano","Vivo","Loco")
 
         val listCharacterDummy = listOf(character1,character2)
 
