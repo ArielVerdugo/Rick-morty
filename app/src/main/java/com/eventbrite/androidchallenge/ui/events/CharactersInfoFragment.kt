@@ -6,22 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.eventbrite.androidchallenge.data.events.model.CharacterDto
 import com.eventbrite.androidchallenge.databinding.CharactersInfoFragmentBinding
 import com.eventbrite.androidchallenge.ui.events.adapter.CharacterAdapter
-import java.util.*
+import com.eventbrite.androidchallenge.viewmodel.CharactersInfoViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CharactersInfoFragment : Fragment() {
 
     private var _binding: CharactersInfoFragmentBinding? = null
     private val binding get() = _binding
+    private val viewModel: CharactersInfoViewModel by viewModels()
+    private lateinit var charactersInfoAdapter: CharacterAdapter
 
     companion object {
         fun newInstance() = CharactersInfoFragment()
     }
-
-    private val viewModel: EventsViewModel by viewModels(factoryProducer = { EventsViewModelFactory() })
 
 
     override fun onCreateView(
@@ -40,20 +44,20 @@ class CharactersInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUi()
+        initConfig()
     }
 
-    fun initUi(){
-        val character1 = CharacterDto("123","Morty",
-            Date(System.currentTimeMillis()), "https://rickandmortyapi.com/api/character/avatar/36.jpeg","Humano","Vivo","Loco")
-
-        val character2 = CharacterDto("123","Ricky Martin",
-            Date(System.currentTimeMillis()), "https://rickandmortyapi.com/api/character/avatar/36.jpeg","Humano","Vivo","Loco")
-
-        val listCharacterDummy = listOf(character1,character2)
-
+    private fun initConfig(){
 
         binding?.charactersRecyclerView?.layoutManager = LinearLayoutManager(this.context)
-        binding?.charactersRecyclerView?.adapter = CharacterAdapter(listCharacterDummy)
+        charactersInfoAdapter = CharacterAdapter()
+
+        lifecycleScope.launch{
+            viewModel.charactersList.collectLatest {
+                charactersInfoAdapter.submitData(it)
+            }
+        }
+
+
     }
 }

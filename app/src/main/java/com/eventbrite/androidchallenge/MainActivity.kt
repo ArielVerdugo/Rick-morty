@@ -3,7 +3,9 @@ package com.eventbrite.androidchallenge
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.eventbrite.androidchallenge.ui.events.CharactersInfoFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

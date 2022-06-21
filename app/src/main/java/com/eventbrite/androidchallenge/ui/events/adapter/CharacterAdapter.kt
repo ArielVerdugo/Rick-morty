@@ -2,11 +2,12 @@ package com.eventbrite.androidchallenge.ui.events.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.eventbrite.androidchallenge.R
-import com.eventbrite.androidchallenge.data.events.model.CharacterDto
+import com.eventbrite.androidchallenge.repository.api.dto.CharacterResponseBody
 
-class CharacterAdapter(private val charactersList:List<CharacterDto>) : RecyclerView.Adapter<CharacterViewHolder>() {
+class CharacterAdapter: PagingDataAdapter<CharacterResponseBody, CharacterViewHolder>(diffCallback)  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -14,10 +15,17 @@ class CharacterAdapter(private val charactersList:List<CharacterDto>) : Recycler
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val characterItem = charactersList[position]
-        holder.render(characterItem)
+        val item = getItem(position)
+        holder.render(item)
     }
 
-    override fun getItemCount(): Int = charactersList.size
+    companion object {
+        val diffCallback = object :DiffUtil.ItemCallback<CharacterResponseBody>() {
+            override fun areItemsTheSame(oldItem: CharacterResponseBody, newItem: CharacterResponseBody):Boolean =
+                oldItem == newItem
 
+            override fun areContentsTheSame(oldItem: CharacterResponseBody, newItem: CharacterResponseBody): Boolean =
+            oldItem.name == newItem.name
+            }
+    }
 }

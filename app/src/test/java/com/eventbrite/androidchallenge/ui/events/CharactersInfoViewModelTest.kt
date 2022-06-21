@@ -1,6 +1,7 @@
 package com.eventbrite.androidchallenge.ui.events
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.eventbrite.androidchallenge.viewmodel.CharactersInfoViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -10,7 +11,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class EventsViewModelTest {
+class CharactersInfoViewModelTest {
 
     @get:Rule val instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -28,6 +29,6 @@ class EventsViewModelTest {
 
     @Test
     fun template() = runTest(dispatcher) {
-        val viewModel = EventsViewModel()
+        val viewModel = CharactersInfoViewModel()
     }
 }
