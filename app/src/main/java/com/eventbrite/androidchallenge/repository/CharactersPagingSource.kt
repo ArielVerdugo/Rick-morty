@@ -2,11 +2,8 @@ package com.eventbrite.androidchallenge.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.eventbrite.androidchallenge.data.events.model.CharacterData
 import com.eventbrite.androidchallenge.repository.api.client.CharacterApiClient
-import com.eventbrite.androidchallenge.repository.api.client.CharacterApiClientImpl
 import com.eventbrite.androidchallenge.repository.api.dto.CharacterResponseBody
-import com.eventbrite.androidchallenge.repository.api.dto.ResponseCharactersDto
 
 class CharactersPagingSource(private val characterApiClient: CharacterApiClient) : PagingSource<Int, CharacterResponseBody>() {
 

@@ -1,5 +1,6 @@
 package com.eventbrite.androidchallenge.repository.api.client
 
+import android.widget.Toast
 import com.eventbrite.androidchallenge.repository.api.CharactersInfoEndPoints
 import com.eventbrite.androidchallenge.repository.api.dto.CharacterResponseBody
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +11,8 @@ class CharacterApiClientImpl @Inject constructor(private val apiClient: Characte
     override suspend fun getCharactersByPage(page: Int): List<CharacterResponseBody> {
         return withContext(Dispatchers.IO){
             val response = apiClient.getCharactersByPage(page)
-            response.body() ?: emptyList()
+            val respons2 = response.body()
+            response.body()?.results ?: emptyList()
         }
     }
 

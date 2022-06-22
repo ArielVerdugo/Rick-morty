@@ -27,7 +27,6 @@ class CharactersInfoFragment : Fragment() {
         fun newInstance() = CharactersInfoFragment()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

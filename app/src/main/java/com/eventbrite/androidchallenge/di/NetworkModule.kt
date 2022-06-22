@@ -1,6 +1,8 @@
 package com.eventbrite.androidchallenge.di
 
 import com.eventbrite.androidchallenge.repository.api.CharactersInfoEndPoints
+import com.eventbrite.androidchallenge.repository.api.client.CharacterApiClient
+import com.eventbrite.androidchallenge.repository.api.client.CharacterApiClientImpl
 import com.eventbrite.androidchallenge.utils.Constants
 import dagger.Module
 import dagger.Provides
